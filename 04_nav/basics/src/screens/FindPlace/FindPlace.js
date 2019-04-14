@@ -34,12 +34,20 @@ class FindPlaceScreen extends React.Component {
         const selPlace = this.props.places.find(place => {
             return place.key === key;
         });
-        this.props.navigator.push({
-            screen: "awesome-places.PlaceDetailScreen",
-            title: selPlace.name,
-            passProps: {
-                selectedPlace: selPlace
-            }
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: "awesome-places.PlaceDetailScreen",
+                passProps: {
+                    selectedPlace: selPlace
+                },
+                options: {
+                    topBar: {
+                        title: {
+                            text: selPlace.name
+                        }
+                    }
+                }
+            },
         });
     };
 

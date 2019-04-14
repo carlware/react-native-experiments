@@ -6,19 +6,9 @@ import startMainTabs from '../MainTabs/startMainTabs';
 
 
 class AuthScreen extends Component {
+
     loginHandler = () => {
         startMainTabs();
-    }
-
-    static options(props) {
-        console.log("options Auth", props)
-        return {
-            topBar: {
-                title: {
-                    text: 'AuthScreen'
-                }
-            }
-        }
     }
 
     render () {

@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Navigation } from "react-native-navigation";
 
 import PlaceInput from '../../components/PlaceInput/PlaceInput';
 import { addPlace } from '../../store/actions/index';
 
 class SharePlaceScreen extends Component {
     constructor(props) {
-        super(props);
+        super(props)
+        Navigation.events().bindComponent(this)
     }
 
-    onNavigatorEvent = event => {
-        if (event.type === "NavBarButtonPress") {
-            if (event.id === "sideDrawerToggle") {
-                this.props.navigator.toggleDrawer({
-                    side: "left"
-                });
-            } 
-        }  
+    navigationButtonPressed({ buttonId }) {
+        Navigation.mergeOptions("app.Drawer", {
+            sideMenu: {
+                left: {
+                    visible: true,
+                },
+            },
+        })
     }
 
     placeAddedHandler = placeName => {

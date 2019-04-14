@@ -7,12 +7,10 @@ import PlaceList from "../../components/PlaceList/PlaceList";
 class FindPlaceScreen extends React.Component {
     constructor(props) {
         super(props);
-        console.log("FindPlaceScreen props", props)
         Navigation.events().bindComponent(this)
     }
 
-    static options(props) {
-        console.log("options", props)
+    static options() {
         return {
             topBar: {
                 title: {
@@ -23,14 +21,13 @@ class FindPlaceScreen extends React.Component {
     }
 
     navigationButtonPressed({ buttonId }) {
-        console.log("id", buttonId)
         Navigation.mergeOptions("app.Drawer", {
             sideMenu: {
                 left: {
                     visible: true,
                 },
             },
-        });
+        })
     }
 
     itemSelectedHandler = key => {

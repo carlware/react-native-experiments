@@ -48,6 +48,20 @@ class SharePlaceScreen extends Component {
         });
     };
 
+    locationPickedHandler = location => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    location: {
+                        value: location,
+                        valid: true
+                    }
+                }
+            };
+        });
+    };
+
     placeAddedHandler = () => {
         if (this.state.placeName.trim() !== "") {
             this.props.onAddPlace(this.state.placeName);
@@ -62,7 +76,7 @@ class SharePlaceScreen extends Component {
                         <HeadingText>Share a Place with us!</HeadingText>
                     </MainText>
                     <PickImage />
-                    <PickLocation />
+                    <PickLocation onLocationPick={this.locationPickedHandler} />
                     <PlaceInput
                         placeName={this.state.placeName}
                         onChangeText={this.placeNameChangedHandler}
@@ -80,13 +94,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center"
-    },
-    placeholder: {
-        borderWidth: 1,
-        borderColor: "black",
-        backgroundColor: "#eee",
-        width: "80%",
-        height: 150
     },
     button: {
         margin: 8
